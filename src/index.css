@@ -1,9 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 
 @theme {
-  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Montserrat", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-display: "Montserrat", sans-serif;
   
   --color-primary: #770026;
   --color-primary-dark: #5a001d;
@@ -20,20 +21,6 @@
   }
 }
 
-.title-effect {
-  position: relative;
-  display: inline-block;
-}
-
-.title-effect::after {
-  content: '';
-  position: absolute;
-  bottom: -8px;
-  left: 0;
-  width: 50px;
-  height: 3px;
-  background-color: var(--color-primary);
-}
 
 .bg-overlay-black-60 {
   position: relative;
@@ -68,4 +55,63 @@ html.lenis, html.lenis body {
 
 .lenis.lenis-scrolling iframe {
   pointer-events: none;
+}
+
+/* Title effect Start */
+/* Wrapper */
+.section-title {
+  margin-bottom: 40px;
+  position: relative;
+}
+
+/* Title */
+.title-effect {
+  position: relative;
+  display: inline-block;
+  z-index: 1;
+  transition: color 0.4s ease;
+}
+
+/* Highlight background */
+.title-effect::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 50%;
+  background: #770026;
+  opacity: 0.2;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s ease;
+  z-index: -1;
+}
+
+/* Hover effect (parent section pe hover) */
+section:hover .title-effect::before {
+  transform: scaleX(1);
+}
+
+/* Optional color change */
+section:hover .title-effect {
+  color: #770026;
+}
+
+/* Dark mode support */
+.dark .title-effect::before {
+  background: #ffffff;
+}
+
+.dark section:hover .title-effect {
+  color: #ffffff;
+}
+/* Title effect End */
+
+/* Section title subheading */
+.section-title h6 {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 18px;
 }
